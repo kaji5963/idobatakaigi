@@ -1,23 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 function Copyright(props) {
   return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
+    <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link
+        color="inherit"
+        href="https://twitter.com/diveintohacking"
+        target="_blank"
+        rel="noopener"
+      >
         kaji
       </Link>
     </Typography>
@@ -25,14 +25,14 @@ function Copyright(props) {
 }
 
 export default function SignIn({ setName }) {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  const [disabled, setDisabled] = useState(true);
+  const [string, setString] = useState("");
+  console.log(string);
+
+  useEffect(() => {
+    const disabled = string === "";
+    setDisabled(disabled);
+  }, [string]);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -48,7 +48,7 @@ export default function SignIn({ setName }) {
         <Typography component="h1" variant="h5">
           ようこそ
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <form component="form" noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
@@ -57,6 +57,7 @@ export default function SignIn({ setName }) {
             label="ニックネーム"
             name="name"
             autoFocus
+            onChange={(e) => setString(e.target.value)}
           />
 
           <Button
@@ -64,10 +65,11 @@ export default function SignIn({ setName }) {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            disabled={disabled}
           >
             はじめる
           </Button>
-        </Box>
+        </form>
       </Box>
       <Copyright sx={{ mt: 8, mb: 4 }} />
     </Container>
