@@ -61,11 +61,14 @@ export default function SignIn({ setName }) {
           />
 
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
             disabled={disabled}
+            onClick={() => {
+              setName(string);
+            }}
           >
             はじめる
           </Button>
