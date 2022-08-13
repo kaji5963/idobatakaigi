@@ -24,7 +24,7 @@ function Copyright(props) {
   );
 }
 
-export default function SignIn() {
+export default function SignIn({ setName }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
