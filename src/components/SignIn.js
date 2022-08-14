@@ -39,7 +39,8 @@ export default function SignIn({ setName }) {
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 100,
+          marginBottom: 20,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -74,6 +75,7 @@ export default function SignIn({ setName }) {
             type="button"
             fullWidth
             variant="contained"
+            color="secondary"
             sx={{ mt: 3, mb: 2 }}
             disabled={disabled}
             onClick={() => {
